@@ -1,4 +1,11 @@
+import { useSelector } from "react-redux"
+import appStore from "../utils/appStore"
+
 const Navbar = () => {
+
+  const user = useSelector((store) => store.user)
+
+
     return (
         <div className="navbar bg-base-200">
   <div className="flex-1">
@@ -8,12 +15,15 @@ const Navbar = () => {
     <div className="form-control">
       {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}
     </div>
-    <div className="dropdown dropdown-end">
+    
+   {user && ( <div className="dropdown dropdown-end ">
+    <div className="flex items-center gap-4">
+      <h2>Hello , {user.firstName}</h2>
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            src= {user.photo} />
         </div>
       </div>
       <ul
@@ -28,7 +38,8 @@ const Navbar = () => {
         <li><a>Settings</a></li>
         <li><a>Logout</a></li>
       </ul>
-    </div>
+          </div>
+    </div>)}
   </div>
 </div>
     )

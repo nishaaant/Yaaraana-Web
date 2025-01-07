@@ -5,7 +5,7 @@ import Footer from './Footer'
 
 const Body = () => {
   return (
-    <div>
+    <div className='flex flex-col '>
         <Navbar />
         <Outlet />
         <Footer />
