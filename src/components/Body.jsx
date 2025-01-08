@@ -34,7 +34,7 @@ const Body = () => {
   },[])
 
   return (
-    <div className='flex flex-col '>
+    <div className='flex flex-col h-screen justify-between '>
         <Navbar />
         <Outlet />
         <Footer />
