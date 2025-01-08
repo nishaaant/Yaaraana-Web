@@ -34,8 +34,8 @@ const Navbar = () => {
     </div>
     
    {user && ( <div className="dropdown dropdown-end ">
-    <div className="flex items-center gap-4">
-      <h2>Hello , {user.firstName}</h2>
+    <div className="flex gap-4">
+      <h2 className="mt-2">Hello , {user.firstName}</h2>
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
@@ -43,20 +43,21 @@ const Navbar = () => {
             src= {user.photo} />
         </div>
       </div>
+      <div className="dropdown dropdown-end">
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
         <li>
-          <Link to={"/profile"} className="justify-between">
+          <Link to={"/profile"}>
             Profile
-            <span className="badge">New</span>
           </Link>
         </li>
         <li><Link to={"/connections"}>Connections</Link></li>
         <li><Link to={"/requests"}>Requests</Link></li>
         <li><a onClick={handleLogout}>Logout</a></li>
       </ul>
-          </div>
+</div>
+      </div>
     </div>)}
   </div>
 </div>

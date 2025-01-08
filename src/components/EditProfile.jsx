@@ -8,10 +8,10 @@ import { addUser } from '../utils/userSlice'
 const EditProfile = ({user}) => {
     const [firstName , setFirstName] = useState(user.firstName)
     const [lastName , setLastName] = useState(user.lastName)
-    const [age , setAge] = useState(user.age)
-    const [gender , setGender] = useState(user.gender)
-    const [photo , setPhoto] = useState(user.photo)
-    const [about , setAbout] = useState(user.about)
+    const [age , setAge] = useState(user.age || "")
+    const [gender , setGender] = useState(user.gender || "")
+    const [photo , setPhoto] = useState(user.photo || "")
+    const [about , setAbout] = useState(user.about || "")
     const [error, setError] = useState("")
     const [showToast, setShowToast] = useState(false)
 
@@ -128,7 +128,7 @@ const EditProfile = ({user}) => {
         </div>
         <div className="toast toast-top toast-center">
   {showToast && <div className="alert alert-success">
-    <span>Message sent successfully.</span>
+    <span>Profile saved Succesfully</span>
   </div>}
 </div>
     </div>
