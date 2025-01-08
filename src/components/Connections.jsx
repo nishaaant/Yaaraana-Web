@@ -24,8 +24,10 @@ const Connections = () => {
         fetchConnections();
     },[])
 
+    if(!connections)return;
+    if(connections.length == 0) return <h1>No Connections Found</h1>
 
-  return connections && (
+  return (
     <div>
     <div className="w-6/12 flex flex-col mx-auto gap-4 p-4">
         <h1 className='text-2xl font-bold'>Your Connections</h1>

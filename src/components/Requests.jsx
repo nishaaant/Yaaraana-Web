@@ -2,12 +2,22 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { BASE_URL } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { getRequests } from '../utils/requestsSlice'
+import { getRequests, removeRequest } from '../utils/requestsSlice'
 
 const Requests = () => {
 
     const dispatch = useDispatch();
     const requests = useSelector((store)=> store.requests)
+
+    const handleReview = async(status , _id) => {
+      try{
+      const res = await axios.post(BASE_URL + "/request/review/" +status+"/"+_id ,{},{withCredentials: true})
+      dispatch(removeRequest(_id))
+    }
+      catch(err){
+        console.error(err)
+      }
+    }
 
     const fetchRequests = async() => {
         try{const res = await axios.get(BASE_URL + "/user/requests/received",
@@ -22,9 +32,12 @@ const Requests = () => {
     useEffect(()=> {
         fetchRequests();
     },[])
+
+    if(!requests)return;
+    if(requests.length == 0) return <h1>No Request Found</h1>
   
 
-  return requests&&(
+  return(
     
     <div className="flex flex-col gap-4 p-4">
       {requests.map((user, key) => (
@@ -49,12 +62,13 @@ const Requests = () => {
           <div className="flex gap-2">
             <button
               className="btn btn-secondary"
+              onClick={()=>handleReview("accepted",user._id)}
             >
               Accept
             </button>
             <button
               className="btn btn-primary"
-      
+              onClick={()=>handleReview("rejected",user._id)}
             >
               Reject
             </button>
