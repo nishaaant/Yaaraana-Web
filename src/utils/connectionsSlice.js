@@ -4,7 +4,7 @@ const connectionSlice = createSlice({
     name : 'connections',
     initialState : null ,
     reducers : {
-        getConnection : (state , actions) => actions.payload,
+        getConnection : (state , action) => action.payload,
         removeConnection : (state , actions) => null,
     }
 })
