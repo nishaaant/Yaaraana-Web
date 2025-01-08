@@ -23,6 +23,10 @@ const Feed = () => {
     useEffect(()=>{
         getFeed();
     },[])
+
+    if(!feed) return;
+    if(feed.length==0)return <h1>You have completed the Feed</h1>
+
   return feed && (
     <div className='flex justify-center my-6'>
         <FeedCard data = {feed[0]}/>
