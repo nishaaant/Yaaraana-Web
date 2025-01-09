@@ -20,7 +20,7 @@ const Requests = () => {
     }
 
     const fetchRequests = async() => {
-        try{const res = await axios.get(BASE_URL + "/user/requests/received",
+        try{const res = await axios.get(BASE_URL + "/user/requests/received",{},
             {withCredentials : true})
             dispatch(getRequests(res?.data?.data))
             console.log(res?.data?.data)}
