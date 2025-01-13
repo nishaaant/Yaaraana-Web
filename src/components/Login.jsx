@@ -23,7 +23,7 @@ const Login = () => {
             },
             { withCredentials: true });
             dispatch(addUser(res.data))
-            navigate("/");
+            return navigate("/");
         }
         catch(err){
             setError(err?.response?.data || "Something went Wrong!")
@@ -38,7 +38,7 @@ const Login = () => {
             },
             { withCredentials: true });
             dispatch(addUser(res?.data?.data))
-            navigate("/profile");
+            return navigate("/profile");
         }
         catch(err){
             setError(err?.response?.data || "Something went Wrong!")
@@ -52,7 +52,7 @@ const Login = () => {
         <div className="card-body">
     <h2 className="card-title justify-center">{isLogin ? "Login" : "Sign Up"}</h2>
     <div>
-        {isLogin ? null :(<>
+        {!isLogin && (<>
     <label className='form-control w-full max-w-xs p-4'>
         <div className='label'>
             <span className='label-text '>First Name</span>

@@ -6,15 +6,15 @@ import { addUser } from '../utils/userSlice'
 import { getConnection } from '../utils/connectionsSlice'
 
 const Connections = () => {
+  const connections = useSelector((store) => store.connections)
     const dispatch = useDispatch();
-    const connections = useSelector((store) => store.connections)
 
     const fetchConnections = async() => {
 
         try{
-            const res = await axios.get(BASE_URL + "/user/connections",{},
+            const res = await axios.get(BASE_URL + "/user/connections",
              {withCredentials:true})
-             dispatch(getConnection(res?.data?.data))
+             dispatch(getConnection(res?.data.data))
             }catch(err){
                 console.error(err)
             }
@@ -24,7 +24,7 @@ const Connections = () => {
         fetchConnections();
     },[])
 
-    if(!connections)return;
+    if(!connections) return;
     if(connections.length == 0) return <h1 className='flex justify-center my-10 text-2xl'>No Connections Found</h1>
 
   return (
